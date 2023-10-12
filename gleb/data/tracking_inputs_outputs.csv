@@ -1,0 +1,328 @@
+query,policy_descr,llm,retriever,answer,notes,timestamp
+"ACT as a corporate attorney whose job is to check the compliance of the company's policy with the state's new laws.
+
+Your task is to identify is the provided policy complies with the new law.
+
+If the policy complies with the new law, then say so and do nothing more.
+
+Otherwise, if the policy does not comply with the law, make a general assessment how bad is the violation, and make a numbered list of what is missing from the policy or what is wrong with the policy, prioritizing the most important issues first. Note on the general assessment: direct violations of the law make the non-compliance severe, i.e. the policy be non-compliant; innocuous missing information make the compliance less severe; no violations make the policy fully compliant.
+
+Note on time limits: if the policy promises shorter times to react or respond to something than the law requires, eg within 30 days vs 45 days required, it is NOT a violation, since sooner is better. 
+
+For example, if the policy is ""The company's address is 123 Main Street, New York, NY 10001. The company's phone number is 212-555-1234."" and the new law is ""You have to specify the company's address, phone number, and email address."", then the missing part is ""company's email"".""
+
+As another example, if the policy is ""The company may collect the following types of personal information: name, address, phone number, email address, and credit card number."" and the new law is ""You have to specify a mechanism for consumers to delete their personal information."", then the missing part is ""mechanism for consumers to delete their personal information"".
+
+As another example, if the policy is ""the company will respond to a verifiable consumer request within 30 days of its receipt"" and the law is ""the company is required to respond within 45 days of receiving a verifiable consumer request"", then there are no missing parts and the policy is fully compliant. 
+ 
+
+*** Policy ***
+# 9. Additional Notice for California Residents
+
+The following applies to California residents pursuant to the California Consumer Privacy Act of 2018 (""CCPA""):
+
+- In the preceding 12 months, the Company may have disclosed the categories of Personal Information listed in Section 2 above to our service providers listed in Section 6 above for business purposes.
+- In the preceding 12 months, the Company has not sold Personal Information. The Company only discloses Personal Information to service providers.
+- You have the right to request that the Company disclose certain information to you about our collection and use of your Personal Information over the past 12 months. Once we receive and confirm your verifiable consumer request, we will disclose to you, to the extent retained by us:
+  - The categories of Personal Information we collected about you.
+  - The categories of sources for the Personal Information we collected about you.
+  - Our business or commercial purpose for collecting or selling that Personal Information.
+  - The categories of third parties with whom we share that Personal Information.
+  - The specific pieces of Personal Information we collected about you (also known as a data portability request).
+  - If we sold or disclosed your Personal Information for a business purpose, two separate lists disclosing: (a) sales, identifying the Personal Information categories that each category of recipient purchased; and (b) disclosures for a business purpose, identifying the Personal Information categories that each category of recipient obtained.
+- You have the right to request that the Company delete any of your Personal Information that we collected from you and retained, subject to certain exceptions. Once we receive and confirm your verifiable consumer request, we will delete (and direct our service providers to delete) your Personal Information from our records, unless an exception applies. We may deny your deletion request if retaining the information is necessary for us or our service providers to:
+  - Complete the transaction for which we collected the Personal Information, provide the Service that you requested, take actions reasonably anticipated within the context of our ongoing business relationship with you, or otherwise perform our contract with you.
+  - Detect security incidents, protect against malicious, deceptive, fraudulent, or illegal activity, or prosecute those responsible for such activities.
+  - Debug the Services to identify and repair errors that impair existing intended functionality.
+  - Exercise free speech, ensure the right of another user to exercise their free speech rights, or exercise another right provided for by law.
+  - Comply with the California Electronic Communications Privacy Act (Cal. Penal Code § 1546 et. seq.).
+  - Engage in public or peer-reviewed scientific, historical, or statistical research in the public interest that adheres to all other applicable ethics and privacy laws, when the information's deletion may likely render impossible or seriously impair the research's achievement, if you previously provided informed consent.
+  - Enable solely internal uses that are reasonably aligned with user expectations based on your relationship with us.
+  - Comply with a legal obligation.
+  - Make other internal and lawful uses of that information that are compatible with the context in which you provided it.
+
+We will not discriminate against you for exercising any of your CCPA rights. Unless permitted by the CCPA, we will not:
+
+- Deny you the Services.
+- Charge you different prices or rates for the Services, including through granting discounts or other benefits, or imposing penalties.
+- Provide you a different level or quality of the Services.
+- Suggest that you may receive a different price or rate for the Services or a different level or quality of the Services.
+
+_Verifiable Consumer Requests_
+
+To exercise your rights described above, please email us at support@recroom.com with the subject line ""CCPA"". Only you, or someone legally authorized to act on your behalf, may make a verifiable consumer request related to your Personal Information. You may also make a verifiable consumer request on behalf of your Child. You may only make a verifiable consumer request for access or data portability twice within a 12-month period. The verifiable consumer request must:
+
+- Provide sufficient information that allows us to reasonably verify you are the person about whom we collected Personal Information or an authorized representative.
+- Describe your request with sufficient detail that allows us to properly understand, evaluate, and respond to it.
+
+We cannot respond to your request or provide you with Personal Information if we cannot verify your identity or authority to make the request and confirm that the Personal Information relates to you. Making a verifiable consumer request does not require you to create an account with us. We will only use Personal Information provided in a verifiable consumer request to verify your identity or authority to make the request.
+
+_Response Timing and Format_
+
+We endeavor to respond to a verifiable consumer request within 30 days of its receipt. If we require more time, we will inform you of the reason and extension period in writing. If you have an account with us, we will deliver our written response to that account. If you do not have an account with us, we will deliver our written response by mail or electronically, at your option.
+
+Any disclosures we provide will only cover the 12-month period preceding the receipt of verifiable consumer request. The response we provide will also explain the reasons we cannot comply with a request, if applicable.
+
+For data portability requests, we will select a format to provide your Personal Information that is readily useable and should allow you to transmit the information from one entity to another entity without hindrance.
+
+We do not charge a fee to process or respond to your verifiable consumer request unless it is excessive, repetitive, or manifestly unfounded. If we determine that the request warrants a fee, we will tell you why we made that decision and provide you with a cost estimate before completing your request.
+
+
+
+",Section 9 original,"gpt-4, temperature .2",Basic retriever,"{
+  ""answer"": ""The provided policy appears to be in compliance with the new law. It includes mechanisms for consumers to request information about their personal data, request deletion of their data, and it outlines the company's obligations and exceptions. The policy also provides a method for consumers to submit verifiable consumer requests, and it specifies the company's response time and format, which is within the legal time frame. Furthermore, the policy includes a non-discrimination clause for consumers who exercise their rights."",
+  ""sources"": [""10-pl"", ""11-pl"", ""32-pl"", ""33-pl"", ""54-pl""]
+}",,2023-10-06 16:02:53.385873
+"ACT as a corporate attorney whose job is to check the compliance of the company's policy with the state's new laws.
+
+Your task is to identify if the provided policy section complies with the new law.
+
+If the policy section complies with the new law, then say so and do nothing more.
+
+Otherwise, if the policy section does not comply with the law, make a general assessment how bad is the violation, and make a numbered list of what is missing from the policy or what is wrong with the policy, prioritizing the most important issues first. Make sure to mention the name and/or the number of the policy section you are assessing.
+
+Note on time limits: if the policy promises shorter times to react or respond to something than the law requires, eg the company responds within 30 days while 45 days is required by law, it is NOT a violation since sooner is better, and 30 is less than 45.
+
+For example, if the policy is ""The company's address is 123 Main Street, New York, NY 10001. The company's phone number is 212-555-1234."" and the new law is ""You have to specify the company's address, phone number, and email address."", then the missing part is ""company's email"", and so the policy is not fully compliant.
+
+As another example, if the entire policy is ""The company may collect the following types of personal information: name, address, phone number, email address, and credit card number."" and the new law is ""You have to specify a mechanism for consumers to delete their personal information."", then the missing part is ""mechanism for consumers to delete their personal information"", and so the policy is not fully compliant.
+
+As another example, if the policy is ""the company will respond to a verifiable consumer request within 30 days of its receipt"" and the law is ""the company is required to respond within 45 days of receiving a verifiable consumer request"", then the policy is fully compliant because 30 is less than 45. 
+ 
+
+*** Policy ***
+# 10. How will the Company notify users of changes to this Policy?
+
+The Company reserves the right to change this Policy from time to time consistent with applicable law. If we make changes to this Policy, we will notify you by revising the date at the top of this Policy, and in some cases, we may provide you with additional notice (such as adding a statement in the Game or the homepages of our Services, or sending you an email notification).
+
+In the event that any changes we make to Policy affect Children in a way that requires prior parental consent under COPPA, we will obtain such prior parental consent.
+
+
+
+",Section 9 original,"gpt-4, temperature 0",Basic retriever,"{
+  ""answer"": ""The policy section does not comply with the new law. The violation is significant as it lacks several key requirements outlined in the law. Here are the main issues, prioritized by importance:\n\n1. The policy does not provide two or more designated methods for submitting requests for information disclosure, deletion, or correction as required by Section 1798.130(a)(1)(A) of the law. At a minimum, a toll-free telephone number or an email address (for businesses operating exclusively online) should be provided.\n\n2. The policy does not mention any mechanism for consumers to delete or correct their personal information, which is required by Sections 1798.105 and 1798.106 respectively.\n\n3. The policy does not specify a time frame within which the company will respond to a verifiable consumer request, which according to Section 1798.130(a)(2)(A) should be within 45 days of receiving the request.\n\n4. The policy does not mention any measures to ensure that the notices and information provided are easily understood by the average consumer, accessible to consumers with disabilities, and available in the language primarily used to interact with the consumer, as required by the law.\n\nPolicy Section Assessed: #10. How will the Company notify users of changes to this Policy?"",
+  ""sources"": [""10-pl"", ""53-pl"", ""54-pl"", ""33-pl"", ""58-pl""]
+}",,2023-10-06 19:14:06.687054
+"ACT as a corporate attorney whose job is to check the compliance of the company's policy with the state's new laws.
+
+Your task is to identify if the provided policy section complies with the new law.
+
+If the policy section complies with the new law, then say so and do nothing more.
+
+Otherwise, if the policy section does not comply with the law, make a general assessment how bad is the violation, and make a numbered list of what is missing from the policy or what is wrong with the policy, prioritizing the most important issues first. Make sure to mention the name and/or the number of the policy section you are assessing.
+
+Note on time limits: if the policy promises shorter times to react or respond to something than the law requires, eg the company responds within 30 days while 45 days is required by law, it is NOT a violation since sooner is better, and 30 is less than 45.
+
+For example, if the policy is ""The company's address is 123 Main Street, New York, NY 10001. The company's phone number is 212-555-1234."" and the new law is ""You have to specify the company's address, phone number, and email address."", then the missing part is ""company's email"", and so the policy is not fully compliant.
+
+As another example, if the entire policy is ""The company may collect the following types of personal information: name, address, phone number, email address, and credit card number."" and the new law is ""You have to specify a mechanism for consumers to delete their personal information."", then the missing part is ""mechanism for consumers to delete their personal information"", and so the policy is not fully compliant.
+
+As another example, if the policy is ""the company will respond to a verifiable consumer request within 30 days of its receipt"" and the law is ""the company is required to respond within 45 days of receiving a verifiable consumer request"", then the policy is fully compliant because 30 is less than 45. 
+ 
+
+*** Policy ***
+# 10. How will the Company notify users of changes to this Policy?
+
+The Company reserves the right to change this Policy from time to time consistent with applicable law. If we make changes to this Policy, we will notify you by revising the date at the top of this Policy, and in some cases, we may provide you with additional notice (such as adding a statement in the Game or the homepages of our Services, or sending you an email notification).
+
+In the event that any changes we make to Policy affect Children in a way that requires prior parental consent under COPPA, we will obtain such prior parental consent.
+
+
+
+",Section 9 original,"gpt-4, temperature 0",Taylor retriever Similarity,"{
+""answer"": ""The policy section 10 does not comply with the new law. The violation is significant as it lacks several key requirements. Here's what is missing or wrong, prioritized by importance:
+
+1. The policy does not provide any designated methods for consumers to submit requests for information, deletion, or correction of their personal information as required by Section CIV1798.130.202012_a_1 of the law. At a minimum, a toll-free telephone number should be provided.
+2. The policy does not mention any measures to ensure that individuals handling consumer inquiries are informed of all requirements in Sections 1798.100, 1798.105, 1798.106, 1798.110, 1798.115, 1798.125, 1798.120, 1798.121, and 1798.135 as required by Sections CIV1798.130.202012_a_3_B_iii_5_C_ii_6 and CIV1798.135.202013_c_3 of the law.
+3. The policy does not mention any measures to correct inaccurate personal information, or delete a consumer’s personal information, based on the consumer’s request, within 45 days of receiving a verifiable consumer request from the consumer as required by Section CIV1798.130.202012_a_2 of the law.
+4. The policy does not mention any measures to provide guidance to businesses regarding their duties and responsibilities under this title and appoint a Chief Privacy Auditor to conduct audits of businesses to ensure compliance with this title pursuant to regulations adopted pursuant to paragraph (18) of subdivision (a) of Section 1798.185 as required by Section CIV1798.199.40.20215255_f of the law."",
+""sources"": [""CIV1798.130.202012_a_1"", ""CIV1798.130.202012_a_3_B_iii_5_C_ii_6"", ""CIV1798.135.202013_c_3"", ""CIV1798.130.202012_a_2"", ""CIV1798.199.40.20215255_f""]
+}",,2023-10-06 19:14:06.689044
+"ACT as a corporate attorney whose job is to check the compliance of the company's policy with the state's new laws.
+
+Your task is to identify if the provided policy section complies with the new law.
+
+If the policy section complies with the new law, then say so and do nothing more.
+
+Otherwise, if the policy section does not comply with the law, make a general assessment how bad is the violation, and make a numbered list of what is missing from the policy or what is wrong with the policy, prioritizing the most important issues first. Make sure to mention the name and/or the number of the policy section you are assessing.
+
+Note on time limits: if the policy promises shorter times to react or respond to something than the law requires, eg the company responds within 30 days while 45 days is required by law, it is NOT a violation since sooner is better, and 30 is less than 45.
+
+For example, if the policy is ""The company's address is 123 Main Street, New York, NY 10001. The company's phone number is 212-555-1234."" and the new law is ""You have to specify the company's address, phone number, and email address."", then the missing part is ""company's email"", and so the policy is not fully compliant.
+
+As another example, if the entire policy is ""The company may collect the following types of personal information: name, address, phone number, email address, and credit card number."" and the new law is ""You have to specify a mechanism for consumers to delete their personal information."", then the missing part is ""mechanism for consumers to delete their personal information"", and so the policy is not fully compliant.
+
+As another example, if the policy is ""the company will respond to a verifiable consumer request within 30 days of its receipt"" and the law is ""the company is required to respond within 45 days of receiving a verifiable consumer request"", then the policy is fully compliant because 30 is less than 45. 
+ 
+
+*** Policy ***
+# 8. Additional Notice for California Residents
+
+The following applies to California residents pursuant to the California Consumer Privacy Act of 2018 (""CCPA""):
+
+- In the preceding 12 months, the Company may have disclosed the categories of Personal Information listed in Section 2 above to our service providers listed in Section 6 above for business purposes.
+- In the preceding 12 months, the Company has not sold Personal Information. The Company only discloses Personal Information to service providers.
+- You have the right to request that the Company disclose certain information to you about our collection and use of your Personal Information over the past 12 months. Once we receive and confirm your verifiable consumer request, we will not disclose to you, to the extent retained by us:
+  - The categories of Personal Information we collected about you.
+  - The categories of sources for the Personal Information we collected about you.
+  - Our business or commercial purpose for collecting or selling that Personal Information.
+  - If we sold or disclosed your Personal Information for a business purpose, two separate lists disclosing: (a) sales, identifying the Personal Information categories that each category of recipient purchased; and (b) disclosures for a business purpose, identifying the Personal Information categories that each category of recipient obtained.
+- You have the right to request that the Company delete any of your Personal Information that we collected from you and retained, subject to certain exceptions. Once we receive and confirm your verifiable consumer request, we will delete (and direct our service providers to delete) your Personal Information from our records, unless an exception applies. We may deny your deletion request if retaining the information is necessary for us or our service providers to:
+  - Complete the transaction for which we collected the Personal Information, provide the Service that you requested, take actions reasonably anticipated within the context of our ongoing business relationship with you, or otherwise perform our contract with you.
+  - Engage in public or peer-reviewed scientific, historical, or statistical research in the public interest that adheres to all other applicable ethics and privacy laws, when the information's deletion may likely render impossible or seriously impair the research's achievement, if you previously provided informed consent.
+  - Enable solely internal uses that are reasonably aligned with user expectations based on your relationship with us.
+  - Comply with a legal obligation.
+  - Make other internal and lawful uses of that information that are compatible with the context in which you provided it.
+
+We will discriminate against you for exercising any of your CCPA rights. Unless permitted by the CCPA, we will:
+
+- Deny you the Services.
+- Charge you different prices or rates for the Services, including through granting discounts or other benefits, or imposing penalties.
+- Provide you a different level or quality of the Services.
+- Suggest that you may receive a different price or rate for the Services or a different level or quality of the Services.
+
+_Verifiable Consumer Requests_
+
+We cannot respond to your request or provide you with Personal Information if we cannot verify your identity or authority to make the request and confirm that the Personal Information relates to you. Making a verifiable consumer request does not require you to create an account with us. We will only use Personal Information provided in a verifiable consumer request to verify your identity or authority to make the request.
+
+
+
+",Section 9 redacted,"gpt-4, temperature 0",Basic retriever,"{
+""answer"": ""The policy section titled '8. Additional Notice for California Residents' is not fully compliant with the California Consumer Privacy Act of 2018 (CCPA). 
+
+1. The policy does not specify the methods for submitting requests for information, deletion, or correction. According to Section 1798.130 of the CCPA, businesses should provide at least two methods for submitting such requests, including a toll-free telephone number and, if the business operates exclusively online, an email address.
+
+2. The policy does not mention any time frame within which the company will respond to a verifiable consumer request. As per Section 1798.130 of the CCPA, businesses are required to respond within 45 days of receiving a verifiable consumer request.
+
+3. The policy does not provide any information about the company's recordkeeping requirements to ensure compliance with the CCPA, as required by Section 1798.185.
+
+4. The policy does not mention the appointment of a Chief Privacy Auditor to conduct audits of businesses to ensure compliance with the CCPA, as required by Section 1798.185.
+
+5. The policy does not mention any mechanism for consumers who do not meet the definition of business to voluntarily certify that they are in compliance with the CCPA, as required by Section 1798.140.
+
+6. The policy does not mention any provisions for the protection of personal information of other natural persons, as required by Section 1798.105 and 1798.106.
+
+7. The policy does not mention any provisions for the protection of personal information in the event of a dispute between or among persons claiming rights to personal information, as required by Section 1798.105 and 1798.106.
+
+8. The policy does not mention any provisions for the protection of personal information in the context of noncommercial activities, as required by Section 2 of Article I of the California Constitution.
+
+9. The policy does not mention any provisions for the protection of personal information in the context of job applicants, employees, owners, directors, officers, medical staff members, or independent contractors, as required by Section 1798.145.
+
+10. The policy does not mention any provisions for the protection of personal information in the context of emergency contact information, as required by Section 1798.145.
+
+11. The policy does not mention any provisions for the protection of personal information in the context of administering benefits for another natural person, as required by Section 1798.145.
+
+12. The policy does not mention any provisions for the protection of personal information in the context of a cybersecurity audit, as required by Section 1798.185.
+
+13. The policy does not mention any provisions for the protection of personal information in the context of a risk assessment, as required by Section 1798.185.
+
+14. The policy does not mention any provisions for the protection of personal information in the context of automated decision-making technology, as required by Section 1798.185.
+
+15. The policy does not mention any provisions for the protection of personal information in the context of a law enforcement agency-approved investigation, as required by Section 1798.145.
+
+16. The policy does not mention any provisions for the protection of personal information in the context of the agency’s audit authority, as required by Section 1798.185.
+
+17. The policy does not mention any provisions for the protection of personal information in the context of an opt-out preference signal, as required by Section 1798.185.
+
+18. The policy does not mention any provisions for the protection of personal information in the context of a business’ determination, as required by Section 1798.130.
+
+19. The policy does not mention any provisions for the protection of personal information in the context of business purposes, as required by Section 1798.185.
+
+20. The policy does not mention any provisions for the protection of personal information in the context of service providers and contractors, as required by Section 1798.185.
+
+21. The policy does not mention any provisions for the protection of personal information in the context of 'intentionally interacts', as required by Section 1798.185.
+
+22. The policy does not mention any provisions for the protection of personal information in the context of 'precise geolocation', as required by Section 1798.185.
+
+23. The policy does not mention any provisions for the protection of personal information in the context of 'specific pieces of information obtained from the consumer', as required by Section 1798.185.
+
+24. The policy does not mention any provisions for the protection of personal information in the context of a cybersecurity audit, as required by Section 1798.185."",
+""sources"": [""63-pl"", ""10-pl"", ""39-pl"", ""55-pl"", ""54-pl""]
+}",,2023-10-06 19:16:47.881053
+"ACT as a corporate attorney whose job is to check the compliance of the company's policy with the state's new laws.
+
+Your task is to identify if the provided policy section complies with the new law.
+
+If the policy section complies with the new law, then say so and do nothing more.
+
+Otherwise, if the policy section does not comply with the law, make a general assessment how bad is the violation, and make a numbered list of what is missing from the policy or what is wrong with the policy, prioritizing the most important issues first. Make sure to mention the name and/or the number of the policy section you are assessing.
+
+Note on time limits: if the policy promises shorter times to react or respond to something than the law requires, eg the company responds within 30 days while 45 days is required by law, it is NOT a violation since sooner is better, and 30 is less than 45.
+
+For example, if the policy is ""The company's address is 123 Main Street, New York, NY 10001. The company's phone number is 212-555-1234."" and the new law is ""You have to specify the company's address, phone number, and email address."", then the missing part is ""company's email"", and so the policy is not fully compliant.
+
+As another example, if the entire policy is ""The company may collect the following types of personal information: name, address, phone number, email address, and credit card number."" and the new law is ""You have to specify a mechanism for consumers to delete their personal information."", then the missing part is ""mechanism for consumers to delete their personal information"", and so the policy is not fully compliant.
+
+As another example, if the policy is ""the company will respond to a verifiable consumer request within 30 days of its receipt"" and the law is ""the company is required to respond within 45 days of receiving a verifiable consumer request"", then the policy is fully compliant because 30 is less than 45. 
+ 
+
+*** Policy ***
+# 8. Additional Notice for California Residents
+
+The following applies to California residents pursuant to the California Consumer Privacy Act of 2018 (""CCPA""):
+
+- In the preceding 12 months, the Company may have disclosed the categories of Personal Information listed in Section 2 above to our service providers listed in Section 6 above for business purposes.
+- In the preceding 12 months, the Company has not sold Personal Information. The Company only discloses Personal Information to service providers.
+- You have the right to request that the Company disclose certain information to you about our collection and use of your Personal Information over the past 12 months. Once we receive and confirm your verifiable consumer request, we will not disclose to you, to the extent retained by us:
+  - The categories of Personal Information we collected about you.
+  - The categories of sources for the Personal Information we collected about you.
+  - Our business or commercial purpose for collecting or selling that Personal Information.
+  - If we sold or disclosed your Personal Information for a business purpose, two separate lists disclosing: (a) sales, identifying the Personal Information categories that each category of recipient purchased; and (b) disclosures for a business purpose, identifying the Personal Information categories that each category of recipient obtained.
+- You have the right to request that the Company delete any of your Personal Information that we collected from you and retained, subject to certain exceptions. Once we receive and confirm your verifiable consumer request, we will delete (and direct our service providers to delete) your Personal Information from our records, unless an exception applies. We may deny your deletion request if retaining the information is necessary for us or our service providers to:
+  - Complete the transaction for which we collected the Personal Information, provide the Service that you requested, take actions reasonably anticipated within the context of our ongoing business relationship with you, or otherwise perform our contract with you.
+  - Engage in public or peer-reviewed scientific, historical, or statistical research in the public interest that adheres to all other applicable ethics and privacy laws, when the information's deletion may likely render impossible or seriously impair the research's achievement, if you previously provided informed consent.
+  - Enable solely internal uses that are reasonably aligned with user expectations based on your relationship with us.
+  - Comply with a legal obligation.
+  - Make other internal and lawful uses of that information that are compatible with the context in which you provided it.
+
+We will discriminate against you for exercising any of your CCPA rights. Unless permitted by the CCPA, we will:
+
+- Deny you the Services.
+- Charge you different prices or rates for the Services, including through granting discounts or other benefits, or imposing penalties.
+- Provide you a different level or quality of the Services.
+- Suggest that you may receive a different price or rate for the Services or a different level or quality of the Services.
+
+_Verifiable Consumer Requests_
+
+We cannot respond to your request or provide you with Personal Information if we cannot verify your identity or authority to make the request and confirm that the Personal Information relates to you. Making a verifiable consumer request does not require you to create an account with us. We will only use Personal Information provided in a verifiable consumer request to verify your identity or authority to make the request.
+
+
+
+",Section 9 redacted,"gpt-4, temperature 0",Taylor retriever Similarity,"{
+  ""answer"": ""The policy section titled '8. Additional Notice for California Residents' is not fully compliant with the new law. The violation is moderate. Here are the issues, prioritized by importance:
+
+1. The policy does not mention the California Electronic Communications Privacy Act as required by Chapter 3.6 (commencing with Section 1546) of Title 12 of Part 2 of the Penal Code (CIV1798.105.20205_d_5).
+2. The policy does not specify that it will disclose and deliver the required information to a consumer free of charge, correct inaccurate personal information, or delete a consumer’s personal information, based on the consumer’s request, within 45 days of receiving a verifiable consumer request from the consumer (CIV1798.130.202012_a_2).
+3. The policy does not provide guidance to businesses regarding their duties and responsibilities under this title and does not mention the appointment of a Chief Privacy Auditor to conduct audits of businesses to ensure compliance with this title (CIV1798.199.40.20215255_f).
+4. The policy does not ensure that all individuals responsible for handling consumer inquiries about the business’ privacy practices or the business’ compliance with this title are informed of all requirements in Sections 1798.100, 1798.105, 1798.106, 1798.110, 1798.115, 1798.125, and this section, and how to direct consumers to exercise their rights under those sections (CIV1798.130.202012_a_3_B_iii_5_C_ii_6).
+5. The policy does not disclose the following information in its online privacy policy or policies if the business has an online privacy policy or policies and in any California-specific description of consumers’ privacy rights, or if the business does not maintain those policies, on its internet website, and update that information at least once every 12 months (CIV1798.130.202012_a_3_B_iii_5)."",
+  ""sources"": [""CIV1798.105.20205_d_5"", ""CIV1798.130.202012_a_2"", ""CIV1798.199.40.20215255_f"", ""CIV1798.130.202012_a_3_B_iii_5_C_ii_6"", ""CIV1798.130.202012_a_3_B_iii_5""]
+}",,2023-10-06 19:16:47.882715
+query,policy_descr,llm,retriever,answer,notes,timestamp
+"ACT as a corporate attorney whose job is to check the compliance of the company's policy with the state's new laws.
+
+Your task is to identify if the provided policy section complies with the new law.
+
+If the policy section complies with the new law, then say so and do nothing more.
+
+Otherwise, if the policy section does not comply with the law, make a general assessment how bad is the violation, and make a numbered list of what is missing from the policy or what is wrong with the policy, prioritizing the most important issues first. Make sure to mention the name and/or the number of the policy section you are assessing.
+
+Note on time limits: if the policy promises shorter times to react or respond to something than the law requires, eg the company responds within 30 days while 45 days is required by law, it is NOT a violation since sooner is better, and 30 is less than 45.
+
+For example, if the policy is ""The company's address is 123 Main Street, New York, NY 10001. The company's phone number is 212-555-1234."" and the new law is ""You have to specify the company's address, phone number, and email address."", then the missing part is ""company's email"", and so the policy is not fully compliant.
+
+As another example, if the entire policy is ""The company may collect the following types of personal information: name, address, phone number, email address, and credit card number."" and the new law is ""You have to specify a mechanism for consumers to delete their personal information."", then the missing part is ""mechanism for consumers to delete their personal information"", and so the policy is not fully compliant.
+
+As another example, if the policy is ""the company will respond to a verifiable consumer request within 30 days of its receipt"" and the law is ""the company is required to respond within 45 days of receiving a verifiable consumer request"", then the policy is fully compliant because 30 is less than 45.
+ ",Section 9 original,"gpt-4, temperature 0",Taylor retirever Similarity,"{
+  ""answer"": ""The policy section '# 9. Additional Notice for California Residents' is generally compliant with the new law. However, there are a few areas that need to be addressed to ensure full compliance:
+
+1. The policy does not explicitly mention the obligation to inform all individuals responsible for handling consumer inquiries about the business’s privacy practices or the business’s compliance with the title, as required by Sections 1798.130.202012_a_3_B_iii_5_C_ii_6 and 1798.135.202013_c_3 of the legal code. This is a significant omission and should be addressed immediately.
+
+2. The policy does not clearly state that the company will disclose and deliver the required information to a consumer free of charge, correct inaccurate personal information, or delete a consumer’s personal information, based on the consumer’s request, within 45 days of receiving a verifiable consumer request from the consumer, as required by Section 1798.130.202012_a_2 of the legal code. Although the policy mentions that the company will respond to a verifiable consumer request within 30 days, it does not explicitly state that it will correct inaccurate information or delete a consumer's personal information based on the consumer's request.
+
+3. The policy does not clearly state that the company will update its online privacy policy or policies at least once every 12 months, as required by Section 1798.130.202012_a_3_B_iii_5 of the legal code. This is a minor omission and should be addressed to ensure full compliance.
+
+4. The policy does not clearly state that the company will comply with the California Electronic Communications Privacy Act pursuant to Chapter 3.6 (commencing with Section 1546) of Title 12 of Part 2 of the Penal Code, as required by Section CIV1798.105.20205_d_5 of the legal code. This is a minor omission and should be addressed to ensure full compliance."",
+  ""sources"": [""CIV1798.130.202012_a_3_B_iii_5_C_ii_6"", ""CIV1798.135.202013_c_3"", ""CIV1798.130.202012_a_2"", ""CIV1798.130.202012_a_3_B_iii_5"", ""CIV1798.105.20205_d_5""]
+}",,2023-10-06 20:06:18.667711
